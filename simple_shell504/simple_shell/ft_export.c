@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static ft_is_valid_env(const    char *str){
+static int __attribute__((unused)) ft_is_valid_env(const    char *str){
     int i;
 
     i = 0;
