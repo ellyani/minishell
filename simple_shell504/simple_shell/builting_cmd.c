@@ -4,6 +4,7 @@ void    builting_echo(char **args, int *status){
 	int	i;
 	int	new_line;
 
+	(void)status;
 	i = 1;
 	new_line = 1;
 
@@ -30,6 +31,8 @@ void    builting_echo(char **args, int *status){
 void    builting_pwd(char **cmd, int *status) {
     char *c = NULL;
     size_t size = 0;
+	
+	(void)cmd;
 	c = getcwd(c, size);
 
     if (c == NULL) {
@@ -91,6 +94,7 @@ void	builting_exit(char **cmd, char **args, int *status, int i){
 }
 
 void	builting_unset(char **args, int *status){
+	(void)status;
 	if (!args[1])
 		ft_putstr_fd("unset: expected argument\n", 1);
 	else{

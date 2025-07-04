@@ -7,6 +7,7 @@ int main(int ac,char **av, char **env) {
     int     status;
     int     i;
 
+    (void)ac;
     line = NULL;
     comand = NULL;
     status = 0;

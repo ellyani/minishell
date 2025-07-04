@@ -12,6 +12,7 @@ extern char	**environ;
 void    free_array(char **av);
 int     ft_exec(char **cmd, char **args,char **env, int i);
 char    **ft_token(char *line);
+char    **expand_command_args(char **args, char **env);
 void    builting_echo(char **args, int *status);
 void	builting_cd(char **args, int *status);
 void    builting_pwd(char **cmd, int *status);

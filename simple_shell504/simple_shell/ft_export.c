@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static ft_is_valid_env(const    char *str){
+static int	ft_is_valid_env(const char *str){
     int i;
 
     i = 0;
@@ -13,5 +13,25 @@ static ft_is_valid_env(const    char *str){
         i++;
     }
     return (1);
+}
+
+void	builting_export_args(char **args, int *status)
+{
+	(void)args;
+	(void)status;
+	(void)ft_is_valid_env;
+}
+
+void	builting_export(void)
+{
+	extern char	**environ;
+	int		i;
+
+	i = 0;
+	while (environ[i])
+	{
+		printf("%s\n",environ[i]);
+		i++;
+	}
 }
 

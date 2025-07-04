@@ -3,6 +3,8 @@
 void    builting_pwd(char **cmd, int *status) {
     char *c = NULL;
     size_t size = 0;
+	
+	(void)cmd;
 	c = getcwd(c, size);
 
     if (c == NULL) {
