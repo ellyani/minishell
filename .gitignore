@@ -1,0 +1,18 @@
+# Build artifacts
+*.o
+*.a
+a.out
+my_shell
+
+# Temporary files
+.DS_Store
+*~
+*.swp
+*.tmp
+
+# IDE files
+.vscode/
+.idea/
+
+# Archive files
+*.zip
