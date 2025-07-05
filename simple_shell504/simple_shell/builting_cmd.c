@@ -1,47 +1,4 @@
-#include "builting_cmd.h"
-
-void    builting_echo(char **args, int *status){
-	int	i;
-	int	new_line;
-
-	i = 1;
-	new_line = 1;
-
-	while (args[i]  && (ft_strncmp(args[i], "-n",2) == 0) && args[i][2] == '\0'){
-		new_line = 0;
-		i++;
-	}
-	
-	while (args[i])
-	{
-		printf("%s", args[i]);
-		if (args[i + 1])
-			printf(" ");
-		i++;
-	}
-	if (new_line)
-		printf("\n");
-	
-}
-
-
-
-
-void    builting_pwd(char **cmd, int *status) {
-    char *c = NULL;
-    size_t size = 0;
-	c = getcwd(c, size);
-
-    if (c == NULL) {
-        perror("pwd");
-		*status = 1;
-    } else {
-        printf("%s\n", c);
-		*status = 0;
-    }
-
-    free(c);
-}
+#include "minishell.h"
 
 
 void	builting_export(void){
@@ -91,6 +48,7 @@ void	builting_exit(char **cmd, char **args, int *status, int i){
 }
 
 void	builting_unset(char **args, int *status){
+	(void)status;
 	if (!args[1])
 		ft_putstr_fd("unset: expected argument\n", 1);
 	else{

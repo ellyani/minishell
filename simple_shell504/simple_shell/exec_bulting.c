@@ -1,4 +1,4 @@
-#include "builting_cmd.h"
+#include "minishell.h"
 
 void free_array(char **av){
     int i = 0;

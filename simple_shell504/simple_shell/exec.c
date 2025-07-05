@@ -1,4 +1,5 @@
-#include "builting_cmd.h"
+#include "minishell.h"
+#include <signal.h>
 
 int ft_exec(char **cmd, char **args, char **env, int i){
     pid_t   child;
@@ -25,6 +26,20 @@ int ft_exec(char **cmd, char **args, char **env, int i){
         waitpid(child, &status, 0);
         free(full_cmd);
         free_array(cmd);
+        
+        // Handle signal termination
+        if (WIFEXITED(status))
+            return (WEXITSTATUS(status));
+        else if (WIFSIGNALED(status))
+        {
+            int sig = WTERMSIG(status);
+            int exit_code = 128 + sig;
+            if (exit_code == 128 + SIGINT)
+                write(STDOUT_FILENO, "\n", 1);
+            else if (exit_code == 128 + SIGQUIT)
+                write(STDOUT_FILENO, "Quit (core dumped)\n", 19);
+            return (exit_code);
+        }
     }
     return (WEXITSTATUS(status));
 }

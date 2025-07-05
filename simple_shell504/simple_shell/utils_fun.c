@@ -1,4 +1,4 @@
-#include "builting_cmd.h"
+#include "minishell.h"
 
 int ft_is_positive(char *str){
     int i;

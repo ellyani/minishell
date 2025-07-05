@@ -1,6 +1,7 @@
-#include "builting_cmd.h"
+#include "minishell.h"
 
 int main(int ac,char **av, char **env) {
+    (void)ac;
     
     char    *line;
     char    **comand;
@@ -29,12 +30,26 @@ int main(int ac,char **av, char **env) {
             continue;
         }
         add_history(line);
-       comand = ft_token(line);       ;
-    if (is_builting(comand[0])){
-        handl_builting(comand, av, &status, i);
-    }
-    else
-       status = ft_exec(comand, av, env, i); 
+        
+        // Check if the line contains pipes
+        if (has_pipe(line))
+        {
+            char ***pipeline = parse_pipeline(line);
+            if (pipeline)
+            {
+                status = exec_pipeline(pipeline, env);
+                free_pipeline(pipeline);
+            }
+        }
+        else
+        {
+            comand = ft_token(line);
+            if (is_builting(comand[0])){
+                handl_builting(comand, av, &status, i);
+            }
+            else
+                status = ft_exec(comand, av, env, i);
+        } 
     }
 
     return 0;

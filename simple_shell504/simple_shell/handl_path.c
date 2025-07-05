@@ -1,4 +1,4 @@
-#include "builting_cmd.h"
+#include "minishell.h"
 
 void    print_error(char *name, char *cmd, int i){
     printf("%s: %d: %s: command not found\n",name,i,cmd);

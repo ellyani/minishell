@@ -11,6 +11,10 @@ extern char	**environ;
 
 void    free_array(char **av);
 int     ft_exec(char **cmd, char **args,char **env, int i);
+int     exec_pipeline(char ***commands, char **env);
+int     has_pipe(char *line);
+char    ***parse_pipeline(char *line);
+void    free_pipeline(char ***commands);
 char    **ft_token(char *line);
 void    builting_echo(char **args, int *status);
 void	builting_cd(char **args, int *status);

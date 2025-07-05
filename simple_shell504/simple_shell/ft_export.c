@@ -1,6 +1,7 @@
 #include "minishell.h"
 
-static ft_is_valid_env(const    char *str){
+/*
+static int ft_is_valid_env(const char *str){
     int i;
 
     i = 0;
@@ -14,4 +15,5 @@ static ft_is_valid_env(const    char *str){
     }
     return (1);
 }
+*/
 

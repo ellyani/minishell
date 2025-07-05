@@ -1,4 +1,4 @@
-#include "builting_cmd.h"
+#include "minishell.h"
 
 void handl_builting(char **cmd, char **args, int *status, int i){
 
