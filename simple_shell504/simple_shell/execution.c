@@ -107,12 +107,22 @@ int exec_pipeline(char ***commands, char **env)
     }
     
     // Wait for all child processes
+    int signal_status = 0;
     for (i = 0; i < num_commands; i++)
     {
         if (pids[i] > 0)
         {
             waitpid(pids[i], &status, 0);
-            if (i == num_commands - 1) // Last command determines exit status
+            
+            // Check if any process was terminated by a signal
+            if (WIFSIGNALED(status))
+            {
+                int sig = WTERMSIG(status);
+                signal_status = 128 + sig;
+            }
+            
+            // Last command determines exit status if no signals
+            if (i == num_commands - 1 && signal_status == 0)
             {
                 if (WIFEXITED(status))
                     last_status = WEXITSTATUS(status);
@@ -125,7 +135,11 @@ int exec_pipeline(char ***commands, char **env)
         }
     }
     
-    // Handle signal termination for the last command
+    // If any process was terminated by signal, use that status
+    if (signal_status != 0)
+        last_status = signal_status;
+    
+    // Handle signal termination 
     if (last_status == 128 + SIGINT)
         write(STDOUT_FILENO, "\n", 1);
     else if (last_status == 128 + SIGQUIT)
