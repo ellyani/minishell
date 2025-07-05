@@ -1,0 +1,9 @@
+*.o
+*.a
+*.zip
+a.out
+my_shell
+simple_shell504/simple_shell/my_shell
+simple_shell504/simple_shell/libft/*.o
+simple_shell504/simple_shell/libft/*.a
+simple_shell504/simple_shell/libft/a.out
